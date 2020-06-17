@@ -3,6 +3,11 @@ import { FormBuilder } from '@angular/forms';
 
 import { Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { environment } from './../../environments/environment';
+
+
+
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
@@ -36,7 +41,7 @@ export class ResetPasswordComponent implements OnInit {
     this.errorMessageOne = "";
     var body = { email: this.resetOne.get("email").value };
     console.log(body);
-    this.http.post("http://localhost:8080/resetStepOne", body, { responseType: 'text' }).subscribe((data) => {
+    this.http.post(environment.apiURL + "/resetStepOne", body, { responseType: 'text' }).subscribe((data) => {
       console.log(data);
       this.errorMessageOne = data;
     }, (error) => {
@@ -49,7 +54,7 @@ export class ResetPasswordComponent implements OnInit {
     this.errorMessageTwo = "";
     var body = { email: this.resetOne.get("email").value, secret: this.resetTwo.get("secret").value, newPass: this.resetTwo.get("newPass").value };
     console.log(body);
-    this.http.post("http://localhost:8080/resetStepTwo", body, { responseType: 'text' }).subscribe((data) => {
+    this.http.post(environment.apiURL + "/resetStepTwo", body, { responseType: 'text' }).subscribe((data) => {
       console.log(data);
       this.errorMessageTwo = data;
     }, (error) => {

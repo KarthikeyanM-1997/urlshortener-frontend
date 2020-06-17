@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { environment } from './../../environments/environment';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,7 +32,7 @@ export class RegisterComponent implements OnInit {
     this.errorMessage = "";
     var body = { email: this.registerForm.get("email").value, pass: this.registerForm.get("pass").value };
     console.log(body);
-    this.http.post("http://localhost:8080/register", body, { responseType: 'text' }).subscribe((data) => {
+    this.http.post(environment.apiURL + "/register", body, { responseType: 'text' }).subscribe((data) => {
       console.log(data);
       this.errorMessage = data;
     }, (error) => {
