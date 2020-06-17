@@ -1,0 +1,31 @@
+<h1>Login</h1>
+<div class="contianer text-center">
+    <form [formGroup]="loginForm" (submit)="register()">
+        <div class="row">
+            <div class="col-lg-6">
+                Email ID
+            </div>
+            <div class="col-lg-6">
+                <input type=text formControlName="email" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Password
+            </div>
+            <div class="col-lg-6">
+                <input type="password" formControlName="pass" />
+            </div>
+        </div>
+        <div class="class">
+            <div class="col-lg-12">
+                <button type="submit" [disabled]="!loginForm.valid">Login</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-lg-12">
+            {{errorMessage}}
+        </div>
+    </div>
+</div>
