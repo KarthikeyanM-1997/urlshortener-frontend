@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
 
   errorMessage = "";
 
+  btnMessage = "Login";
+
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private userService: UserServiceService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.email],
@@ -32,6 +34,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+
+    this.btnMessage = "Logging in...";
+    
     this.errorMessage = "";
 
     var body = { email: this.loginForm.get("email").value, pass: this.loginForm.get("pass").value };
@@ -43,10 +48,11 @@ export class LoginComponent implements OnInit {
         this.userService.logIn(JSON.parse(data).token);
         this.router.navigateByUrl('/dashboard');
       }
-
+      this.btnMessage = "Login";
     }, (error) => {
       console.log(error);
       this.errorMessage = error.error;
+      this.btnMessage = "Login";
     });
   }
 }
