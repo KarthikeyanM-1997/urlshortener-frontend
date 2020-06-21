@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CreateLinkComponent } from './create-link/create-link.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -12,7 +14,18 @@ const routes: Routes = [
   {
     path: "login", component: LoginComponent
   },
-  { path: "reset", component: ResetPasswordComponent }
+  {
+    path: "", component: LoginComponent
+  },
+  {
+    path: "reset", component: ResetPasswordComponent
+  },
+  {
+    path: "createLink", component: CreateLinkComponent
+  },
+  {
+    path: "dashboard", component: DashboardComponent
+  }
 ];
 
 @NgModule({
