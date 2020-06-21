@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL : "https://node-bcrypt-app.herokuapp.com"
+  apiURL : "https://url-shortener-karthikeyan.herokuapp.com"
 };
