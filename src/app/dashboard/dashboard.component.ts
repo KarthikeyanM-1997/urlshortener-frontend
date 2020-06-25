@@ -93,7 +93,6 @@ export class DashboardComponent implements OnInit {
 
     this.http.get(environment.apiURL + "/dashboard", options).subscribe((data) => {
       this.dashboardData = data;
-      console.log(data);
       this.setChartData();
     },
       (error) => {

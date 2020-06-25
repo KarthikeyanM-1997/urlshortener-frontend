@@ -40,12 +40,9 @@ export class ResetPasswordComponent implements OnInit {
   resetStepOne() {
     this.errorMessageOne = "";
     var body = { email: this.resetOne.get("email").value };
-    console.log(body);
     this.http.post(environment.apiURL + "/resetStepOne", body, { responseType: 'text' }).subscribe((data) => {
-      console.log(data);
       this.errorMessageOne = data;
     }, (error) => {
-      console.log(error);
       this.errorMessageOne = error.error;
     });
   }
@@ -53,12 +50,9 @@ export class ResetPasswordComponent implements OnInit {
   resetStepTwo() {
     this.errorMessageTwo = "";
     var body = { email: this.resetOne.get("email").value, secret: this.resetTwo.get("secret").value, newPass: this.resetTwo.get("newPass").value };
-    console.log(body);
     this.http.post(environment.apiURL + "/resetStepTwo", body, { responseType: 'text' }).subscribe((data) => {
-      console.log(data);
       this.errorMessageTwo = data;
     }, (error) => {
-      console.log(error);
       this.errorMessageTwo = error.error;
     });
   }

@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
     var body = { email: this.loginForm.get("email").value, pass: this.loginForm.get("pass").value };
 
     this.http.post(environment.apiURL + "/login", body, { responseType: 'text' }).subscribe((data) => {
-      console.log(data);
       this.errorMessage = JSON.parse(data).message;
       if (JSON.parse(data).token != undefined) {
         this.userService.logIn(JSON.parse(data).token);
@@ -50,7 +49,6 @@ export class LoginComponent implements OnInit {
       }
       this.btnMessage = "Login";
     }, (error) => {
-      console.log(error);
       this.errorMessage = error.error;
       this.btnMessage = "Login";
     });

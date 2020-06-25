@@ -17,6 +17,8 @@ export class RegisterComponent implements OnInit {
 
   errorMessage = "";
 
+  registerMessage = "Register";
+
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.registerForm = this.formBuilder.group({
       email: ['', Validators.email],
@@ -30,14 +32,16 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.errorMessage = "";
+
+    this.registerMessage = "Registering...";
+
     var body = { email: this.registerForm.get("email").value, pass: this.registerForm.get("pass").value };
-    console.log(body);
     this.http.post(environment.apiURL + "/register", body, { responseType: 'text' }).subscribe((data) => {
-      console.log(data);
       this.errorMessage = data;
+      this.registerMessage = "Register";
     }, (error) => {
-      console.log(error);
       this.errorMessage = error.error;
+      this.registerMessage = "Register";
     });
   }
 
