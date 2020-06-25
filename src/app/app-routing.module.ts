@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { CreateLinkComponent } from './create-link/create-link.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthServiceService } from './auth-service.service';
 
 
 const routes: Routes = [
@@ -21,10 +22,10 @@ const routes: Routes = [
     path: "reset", component: ResetPasswordComponent
   },
   {
-    path: "createLink", component: CreateLinkComponent
+    path: "createLink", component: CreateLinkComponent, canActivate: [AuthServiceService]
   },
   {
-    path: "dashboard", component: DashboardComponent
+    path: "dashboard", component: DashboardComponent, canActivate: [AuthServiceService]
   }
 ];
 
