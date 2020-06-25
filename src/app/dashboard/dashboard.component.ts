@@ -66,7 +66,6 @@ export class DashboardComponent implements OnInit {
       tempChartData.push(this.dashboardData[i].count);
     }
     this.barChartData = [{ data: tempChartData, label: "Clicks" }];
-    console.log(this.barChartData);
   }
 
   chartClicked(event) {
