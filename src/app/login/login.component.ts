@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   btnMessage = "Login";
 
+  btnGuestMessage = "Guest Login";
+
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private userService: UserServiceService, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.email],
@@ -51,6 +53,28 @@ export class LoginComponent implements OnInit {
     }, (error) => {
       this.errorMessage = error.error;
       this.btnMessage = "Login";
+    });
+  }
+
+  
+  loginGuest() {
+
+    this.btnGuestMessage = "Logging in...";
+    
+    this.errorMessage = "";
+
+    var body = { email: "karthikeyan1997@gmail.com", pass: "apple" };
+
+    this.http.post(environment.apiURL + "/login", body, { responseType: 'text' }).subscribe((data) => {
+      this.errorMessage = JSON.parse(data).message;
+      if (JSON.parse(data).token != undefined) {
+        this.userService.logIn(JSON.parse(data).token);
+        this.router.navigateByUrl('/dashboard');
+      }
+      this.btnGuestMessage = "Login";
+    }, (error) => {
+      this.errorMessage = error.error;
+      this.btnGuestMessage = "Login";
     });
   }
 }
